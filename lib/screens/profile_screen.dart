@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -18,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 70,
-                backgroundImage: NetworkImage('https://your-image-url.com/profile.jpg'), 
+                backgroundImage: AssetImage('assets/profile.jpg'), // <-- pakai image lokal
               ),
               SizedBox(height: 20),
               Text(
@@ -31,7 +32,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               SizedBox(height: 5),
               Text(
-                'NRP: 5026221044',
+                '5026221044',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey[700],
@@ -55,7 +56,7 @@ class ProfileScreen extends StatelessWidget {
                           SizedBox(width: 10),
                           Expanded(
                             child: Text(
-                              "Aku sedang dalam perjalanan menyenangkan belajar Bahasa Jepang 🎌",
+                              "I'm on an exciting journey of learning Japanese 🎌",
                               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                             ),
                           ),
@@ -63,7 +64,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        "🌿 Seberapa Aku Menyukai Belajar Bahasa Jepang",
+                        "🌿 How Much I Enjoy Learning Japanese",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
@@ -77,14 +78,24 @@ class ProfileScreen extends StatelessWidget {
                       ProgressItem(label: 'カタカナ (Katakana)', value: 0.5, color: Color(0xFFB2D8B2)),
                       SizedBox(height: 20),
                       Center(
-                        child: Text(
-                          'Follow my journey as I learn Japanese 🇯🇵✨',
-                          style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                            fontSize: 14,
-                            color: Colors.grey[700],
+                        child: InkWell(
+                          onTap: () async {
+                            final Uri url = Uri.parse('https://your-link.com');
+                            if (await canLaunchUrl(url)) {
+                              await launchUrl(url);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          },
+                          child: Text(
+                            'Follow my journey as I learn Japanese 🇯🇵✨',
+                            style: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              fontSize: 14,
+                              color: Colors.blue,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
                         ),
                       ),
                     ],
