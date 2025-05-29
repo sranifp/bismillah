@@ -8,7 +8,7 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: Color(0xFFFFF7F0),
       appBar: AppBar(
         backgroundColor: Color(0xFFFFC1CC),
-        title: Text('Profil Saya', style: TextStyle(color: Colors.white)),
+        title: Text('My Profile', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         elevation: 0,
       ),
